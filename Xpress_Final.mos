@@ -1,0 +1,57 @@
+model ModelName
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+
+declarations
+	N = 1..6
+	MaxN = 6
+  	X: array(N, N) of mpvar
+  	C: array(N, N) of real
+  	U: array(N) of mpvar
+  	Objective:linctr
+end-declarations
+
+ 	C::[0, 15, 25, 35, 35, 25,
+  		15, 0, 30, 40, 25, 15,
+  		25, 30, 0, 20, 30, 25,
+  		35, 40, 20, 0, 20, 30,
+  		35, 25, 35, 20, 0, 19,
+  		25, 15, 25, 30, 19, 0]
+  	
+  	!C:: [0, 786, 549, 657, 331, 559, 250,
+     !786, 0, 668, 979, 593, 224, 905,
+     !549, 668, 0, 316, 607, 472, 467,
+     !657, 979, 316, 0, 890, 769, 400,
+     !331, 593, 607, 890, 0, 386, 559,
+     !559, 224, 472, 769, 386, 0, 681,
+     !250, 905, 467, 400, 559, 681, 0]   = 2575 (7 nodes)
+
+
+writeln("Begin running model")
+!...
+	Problem:=sum(i,j in N | i<>j) C(i,j)*X(i,j)
+	
+	forall(j in N)
+	sum(i in N | i<>j) X(i,j)= 1
+	
+	forall(j in N)
+	sum(i in N | i<>j) X(j,i)= 1
+	
+	forall(i,j in N | j<>1 and i<>j)
+	U(j)>=U(i)+1-MaxN*(1-X(i,j))
+	
+	U(1)=0
+	
+	forall(i in N)
+	U(i)>=0
+	
+	forall(i,j in N | i<>j) X(i,j) is_binary
+	
+	minimize(Problem)
+	
+	writeln("Solution:\Objective: ", getobjval)
+	
+	
+writeln("End running model")
+
+end-model
