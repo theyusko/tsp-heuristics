@@ -4,9 +4,9 @@
 https://www.youtube.com/watch?v=q6fPk0--eHY
 
 ### Heuristic Implementations
-https://github.com/yihui-he/TSP
-https://github.com/rohanp/travelingSalesman
-https://ericphanson.com/posts/2016/the-traveling-salesman-and-10-lines-of-python/
+ - https://github.com/yihui-he/TSP
+ - https://github.com/rohanp/travelingSalesman
+ - https://ericphanson.com/posts/2016/the-traveling-salesman-and-10-lines-of-python/
 
 ### Blogs
 http://toddwschneider.com/posts/traveling-salesman-with-simulated-annealing-r-and-shiny/
