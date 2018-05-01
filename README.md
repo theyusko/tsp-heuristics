@@ -1,5 +1,9 @@
 # tsp-heuristics
+A team project to implement and compare different TSP heuristics.
 
+## Chosen heuristic algorithms:
+
+## Resources:
 ### Traveling Salesman Problem, four algorithms
 https://www.youtube.com/watch?v=q6fPk0--eHY
 
