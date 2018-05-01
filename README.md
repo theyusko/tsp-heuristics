@@ -15,6 +15,6 @@ http://toddwschneider.com/posts/traveling-salesman-with-simulated-annealing-r-an
 https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm
 
 ## Test Data
-http://www.math.uwaterloo.ca/tsp/data/ (Random)
-http://elib.zib.de/pub/mp-testdata/tsp/tsplib/atsp/index.html (Asymmetric)
-http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html (Symmetric)
+ - http://www.math.uwaterloo.ca/tsp/data/ (Random)
+ - http://elib.zib.de/pub/mp-testdata/tsp/tsplib/atsp/index.html (Asymmetric) 
+ - http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html (Symmetric)
