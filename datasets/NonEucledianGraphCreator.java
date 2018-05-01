@@ -79,10 +79,8 @@ public class NonEucledianGraphCreator
                 }
                 else
                 {
-                    int tempDistance = (int)(Math.random() * 2);
-                    distancesInputArray.get(i).set(j, tempDistance);    
-                    distancesInputArray.get(j).set(i, tempDistance);
-                    if(tempDistance == 1)
+                    int tempDistance = (int)(Math.random() * 3);
+                    if(tempDistance != 0)
                     {
                         distancesInputArray.get(i).set(j, calculateDistance(i, j, nodeLocationsInputArray));
                         distancesInputArray.get(j).set(i, calculateDistance(i, j, nodeLocationsInputArray));
@@ -268,7 +266,7 @@ public class NonEucledianGraphCreator
         {
             totalDistance += getSquare(locations.get(firstNode).get(i) - locations.get(secondNode).get(i));
         }
-        return (int) Math.sqrt(totalDistance);
+        return (int) Math.sqrt(Math.abs(totalDistance));
     }
     
     private int getSquare(int input)

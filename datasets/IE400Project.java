@@ -25,6 +25,8 @@ public class IE400Project
         int dimension;
         NonEucledianGraphCreator y;
         
+        asymmetricGraphCreator z;
+        
         for (int i = 1; i < 21; i++) 
         {
             nodeNumber = (int)(Math.random() * 98) + 2;
@@ -32,6 +34,9 @@ public class IE400Project
             x = new euclideanGraphCreator(nodeNumber, 1000, dimension);
             x.printMatrice("euclideanGraph"+i);
         }
+        x = new euclideanGraphCreator(10, 15, 2);
+        x.printMatrice("euclideanGraph"+21);
+        
         
         for (int i = 1; i < 21; i++) 
         {
@@ -40,6 +45,18 @@ public class IE400Project
             y = new NonEucledianGraphCreator(nodeNumber, 1000, dimension);
             y.printMatrice("nonEuclideanGraph"+i);
         }
+        y = new NonEucledianGraphCreator(10, 15, 2);
+        y.printMatrice("nonEuclideanGraph"+21);
+        
+        for (int i = 1; i < 21; i++) 
+        {
+            nodeNumber = (int)(Math.random() * 98) + 2;
+            dimension = (int)(Math.random() * 4) + 1;
+            z = new asymmetricGraphCreator(nodeNumber, 1000, dimension);
+            z.printMatrice("asymmetricGraph"+i);
+        }
+        z = new asymmetricGraphCreator(10, 15, 2);
+        z.printMatrice("asymmetricGraph"+21);
     }
     
 }
