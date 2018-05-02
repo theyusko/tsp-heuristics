@@ -3,11 +3,12 @@ A team project to implement and compare different TSP heuristics.
 
 
 ## Heuristic algorithms:
- 1. Brute Force 
- ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/1_bruteforce.png)
+ 1. Insertion Heuristics
+ ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/10_insertionheuristics.png)
  
  2. Greedy
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/2_greedy.png)
+ ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/2_greedy2.png)
  
  3. Nearest Neighbor (Chosen)
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/3_nearestneighbor.png)
@@ -31,6 +32,11 @@ A team project to implement and compare different TSP heuristics.
  9. Neural Network
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/9_neuralnetwork.png)
  
+ 10. Minimum Spanning Tree
+https://www.geeksforgeeks.org/travelling-salesman-problem-set-2-approximate-using-mst/
+
+ 11. Christofides
+ ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/11_christofides.png)
  
 ## Resources:
 ### Traveling Salesman Problem, four algorithms
