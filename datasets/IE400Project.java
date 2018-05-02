@@ -31,9 +31,9 @@ public class IE400Project
        
         for (int i = 1; i < 21; i++) 
         {
-            nodeNumber = (int)(Math.random() * 98) + 2;
+            nodeNumber = (int)(Math.random() * 20) + 2;
             dimension = (int)(Math.random() * 4) + 1;
-            x = new euclideanGraphCreator(nodeNumber, 1000, dimension);
+            x = new euclideanGraphCreator(nodeNumber, 100, dimension);
             x.printMatrice("euclideanGraph"+i);
         }
         x = new euclideanGraphCreator(8, 20, 2);
@@ -42,9 +42,9 @@ public class IE400Project
         
         for (int i = 1; i < 21; i++) 
         {
-            nodeNumber = (int)(Math.random() * 98) + 2;
+            nodeNumber = (int)(Math.random() * 20) + 2;
             dimension = (int)(Math.random() * 4) + 1;
-            y = new nonEucledianGraphCreator(nodeNumber, 1000, dimension);
+            y = new nonEucledianGraphCreator(nodeNumber, 100, dimension);
             y.printMatrice("nonEuclideanGraph"+i);
         }
         y = new nonEucledianGraphCreator(8, 15, 2);
@@ -52,9 +52,9 @@ public class IE400Project
         
         for (int i = 1; i < 21; i++) 
         {
-            nodeNumber = (int)(Math.random() * 98) + 2;
+            nodeNumber = (int)(Math.random() * 20) + 2;
             dimension = (int)(Math.random() * 4) + 1;
-            z = new asymmetricGraphCreator(nodeNumber, 1000, dimension);
+            z = new asymmetricGraphCreator(nodeNumber, 100, dimension);
             z.printMatrice("asymmetricGraph"+i);
         }
         z = new asymmetricGraphCreator(8, 15, 2);
@@ -62,9 +62,9 @@ public class IE400Project
        
         for (int i = 1; i < 21; i++) 
         {
-            nodeNumber = (int)(Math.random() * 98) + 2;
+            nodeNumber = (int)(Math.random() * 20) + 2;
             dimension = (int)(Math.random() * 4) + 1;
-            q = new symmetricGraphCreator(nodeNumber, 1000, dimension);
+            q = new symmetricGraphCreator(nodeNumber, 100, dimension);
             q.printMatrice("symmetricGraph"+i);
         }
         q = new symmetricGraphCreator(8, 15, 2);
