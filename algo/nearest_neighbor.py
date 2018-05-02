@@ -13,15 +13,11 @@ import math
 
 def algorithm():
     # Read the first line for node number
-    node_no = 8
-    graph = [[-1, 0, 302, 595, 0, 598, 215, 378],
-             [0, -1, 643, 867, 258, 849, 0, 0],
-             [302, 643, -1, 745, 314, 293, 131, 36],
-             [595, 867, 745, -1, 0, 622, 623, 947],
-             [0, 258, 314, 0, -1, 632, 827, 616],
-             [598, 849, 293, 622, 632, -1, 538, 272],
-             [215, 0, 131, 623, 827, 538, -1, 987],
-             [378, 0, 36, 947, 616, 272, 987, -1]]
+    node_no = 4
+    graph = [[-1, 411, 44, 19],
+             [411, -1, 0, 21],
+             [44, 0, -1, 0],
+             [19, 21, 0, -1]]
 
     min_distance = np.zeros((node_no,), dtype=float)  # distances with starting node as min_distance[i]
     travel_route = [[0 for x in range(0, node_no)] for y in range(0, node_no)]
