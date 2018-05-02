@@ -48,6 +48,6 @@ http://toddwschneider.com/posts/traveling-salesman-with-simulated-annealing-r-an
 https://stackoverflow.com/questions/30552656/python-traveling-salesman-greedy-algorithm
 
 ## Test Data
- - http://www.math.uwaterloo.ca/tsp/data/ (Random)
- - http://elib.zib.de/pub/mp-testdata/tsp/tsplib/atsp/index.html (Asymmetric) 
- - http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html (Symmetric)
+ - Euclidean graph is generated with the following definition of triangle inequality: 
+ Triangle-Inequality: The least distant path to reach a vertex j from i is always to reach j directly from i, rather than   through some other vertex k (or vertices), i.e., dis(i, j) is always less than or equal to dis(i, k) + dist(k, j). The Triangle-Inequality holds in many practical situations.
+When the cost function satisfies the triangle inequality, we can design an approximate algorithm for TSP that returns a tour whose cost is never more than twice the cost of an optimal tour. The idea is to use Minimum Spanning Tree (MST). Following is the MST based algorithm.
