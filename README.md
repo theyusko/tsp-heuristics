@@ -2,14 +2,14 @@
 A team project to implement and compare different TSP heuristics.
 
 
-## Chosen (heuristic) algorithms:
+## Heuristic algorithms:
  1. Brute Force 
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/1_bruteforce.png)
  
  2. Greedy
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/2_greedy.png)
  
- 3. Nearest Neighbor
+ 3. Nearest Neighbor (Chosen)
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/3_nearestneighbor.png)
  
  4. Branch and Bround
