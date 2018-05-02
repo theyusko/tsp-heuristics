@@ -11,8 +11,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Ahmet Batu Orhan
+ * 
  */
-public class asymmetricGraphCreator extends graphCreator
+public class symmetricGraphCreator extends graphCreator
 {
     
     private final int nodeNumber;
@@ -24,7 +25,7 @@ public class asymmetricGraphCreator extends graphCreator
     private final ArrayList<ArrayList<Integer>> distances;
     private final ArrayList<Integer> tempCycle;
     
-    public asymmetricGraphCreator(int nodeNumber, int arcNumber, int spaceDimension) 
+    public symmetricGraphCreator(int nodeNumber, int arcNumber, int spaceDimension) 
     {
         super(nodeNumber, arcNumber, spaceDimension);
         
@@ -38,18 +39,18 @@ public class asymmetricGraphCreator extends graphCreator
         
         super.createRandomNodeLocations(this.nodeLocations, this.nodeNumber, this.spaceDimension); 
 
-        generateAsymmetricGraph(this.nodeLocations, this.distances, this.tempCycle);
+        generateSymmetricGraph(this.nodeLocations, this.distances, this.tempCycle);
     }
         
     //METHODS
-    //Major Methods   
-    private void generateAsymmetricGraph(ArrayList<ArrayList<Integer>> nodeLocationsInputArray, 
+    //Major Methods
+    private void generateSymmetricGraph(ArrayList<ArrayList<Integer>> nodeLocationsInputArray, 
                                                         ArrayList<ArrayList<Integer>> distancesInputArray,
                                                         ArrayList<Integer> cycleInputArray)
     { 
         for(int i = 0 ; i < nodeNumber ; i++) 
         {
-            for (int j = 0 ; j < nodeNumber ; j++) 
+            for (int j = 0 ; j <= i ; j++) 
             {
                 if(i == j)
                 {
@@ -58,9 +59,11 @@ public class asymmetricGraphCreator extends graphCreator
                 else
                 {
                     int tempDistance = (int)(Math.random() * 3);
-                    if(tempDistance != 0)  
+                    if(tempDistance != 0)
                     {
-                        distancesInputArray.get(i).set(j, (int)(Math.random() * Integer.MAX_VALUE));
+                        tempDistance = (int)(Math.random() * Integer.MAX_VALUE);
+                        distancesInputArray.get(i).set(j, tempDistance);
+                        distancesInputArray.get(j).set(i, tempDistance);
                     }
                 }
             }
@@ -73,9 +76,11 @@ public class asymmetricGraphCreator extends graphCreator
             
             int distance = (int)(Math.random() * Integer.MAX_VALUE);
             distancesInputArray.get(firstNode).set(secondNode, distance);
+            distancesInputArray.get(secondNode).set(firstNode, distance);
         }
         int distance = (int)(Math.random() * Integer.MAX_VALUE);
         
+        distancesInputArray.get(cycleInputArray.get(1)).set(cycleInputArray.get(cycleInputArray.size() - 1), distance);
         distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);
                 
     }
@@ -84,6 +89,6 @@ public class asymmetricGraphCreator extends graphCreator
     protected void printMatrice(String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        super.printMatriceHelper(distances, fileName);
+        printMatriceHelper(distances, fileName);
     }
 }
