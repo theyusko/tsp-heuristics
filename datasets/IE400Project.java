@@ -5,18 +5,19 @@
  */
 package ie400project;
 
-import java.awt.Dimension;
 import java.io.FileNotFoundException;
 
 /**
  *
- * @author Ahmet Batu
+ * @authors Ahmet Batu Orhan and Ecem İlgün
+ * 
  */
 public class IE400Project 
 {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException 
     {
@@ -28,7 +29,7 @@ public class IE400Project
         asymmetricGraphCreator z;
         symmetricGraphCreator q;
        
-        for (int i = 1; i < 1; i++) 
+        for (int i = 1; i < 21; i++) 
         {
             nodeNumber = (int)(Math.random() * 98) + 2;
             dimension = (int)(Math.random() * 4) + 1;

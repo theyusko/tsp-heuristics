@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Ahmet Batu Orhan
+ * @authors Ahmet Batu Orhan and Ecem İlgün
+ * 
  */
 public class euclideanGraphCreator extends graphCreator
 {
@@ -45,6 +46,8 @@ public class euclideanGraphCreator extends graphCreator
                                                         ArrayList<ArrayList<Integer>> distancesInputArray,
                                                         ArrayList<Integer> cycleInputArray)
     { 
+        int distance;
+        
         for(int i = 0 ; i < nodeNumber ; i++) 
         {
             for (int j = 0 ; j <= i ; j++) 
@@ -55,12 +58,9 @@ public class euclideanGraphCreator extends graphCreator
                 }
                 else
                 {
-                    int tempDistance = (int)(Math.random() * 3);
-                    if(tempDistance != 0)
-                    {
-                        distancesInputArray.get(i).set(j, super.calculateDistance(i, j, nodeLocationsInputArray));
-                        distancesInputArray.get(j).set(i, super.calculateDistance(i, j, nodeLocationsInputArray));
-                    }
+                    distance =  super.calculateDistance(i, j, nodeLocationsInputArray);
+                    distancesInputArray.get(i).set(j,distance);
+                    distancesInputArray.get(j).set(i, distance);
                 }
             }
         }
@@ -70,15 +70,14 @@ public class euclideanGraphCreator extends graphCreator
             int firstNode = cycleInputArray.get(i);
             int secondNode = cycleInputArray.get(i + 1);
             
-            int distance = super.calculateDistance(firstNode, secondNode, nodeLocationsInputArray);
+            distance = super.calculateDistance(firstNode, secondNode, nodeLocationsInputArray);
             distancesInputArray.get(firstNode).set(secondNode, distance);
             distancesInputArray.get(secondNode).set(firstNode, distance);
         }
-        int distance = super.calculateDistance(cycleInputArray.get(1), cycleInputArray.get(cycleInputArray.size() - 1), nodeLocationsInputArray);
+        distance = super.calculateDistance(cycleInputArray.get(1), cycleInputArray.get(cycleInputArray.size() - 1), nodeLocationsInputArray);
         
         distancesInputArray.get(cycleInputArray.get(1)).set(cycleInputArray.get(cycleInputArray.size() - 1), distance);
-        distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);
-                
+        distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);        
     }
     
     @Override
