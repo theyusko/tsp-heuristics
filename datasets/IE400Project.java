@@ -36,7 +36,7 @@ public class IE400Project
             x = new euclideanGraphCreator(nodeNumber, 1000, dimension);
             x.printMatrice("euclideanGraph"+i);
         }
-        x = new euclideanGraphCreator(10, 20, 2);
+        x = new euclideanGraphCreator(8, 20, 2);
         x.printMatrice("euclideanGraph"+21);
         
         
@@ -47,7 +47,7 @@ public class IE400Project
             y = new nonEucledianGraphCreator(nodeNumber, 1000, dimension);
             y.printMatrice("nonEuclideanGraph"+i);
         }
-        y = new nonEucledianGraphCreator(10, 15, 2);
+        y = new nonEucledianGraphCreator(8, 15, 2);
         y.printMatrice("nonEuclideanGraph"+21);
         
         for (int i = 1; i < 21; i++) 
@@ -57,7 +57,7 @@ public class IE400Project
             z = new asymmetricGraphCreator(nodeNumber, 1000, dimension);
             z.printMatrice("asymmetricGraph"+i);
         }
-        z = new asymmetricGraphCreator(10, 15, 2);
+        z = new asymmetricGraphCreator(8, 15, 2);
         z.printMatrice("asymmetricGraph"+21);
        
         for (int i = 1; i < 21; i++) 
@@ -67,7 +67,7 @@ public class IE400Project
             q = new symmetricGraphCreator(nodeNumber, 1000, dimension);
             q.printMatrice("symmetricGraph"+i);
         }
-        q = new symmetricGraphCreator(10, 15, 2);
+        q = new symmetricGraphCreator(8, 15, 2);
         q.printMatrice("symmetricGraph"+21);
     }
     

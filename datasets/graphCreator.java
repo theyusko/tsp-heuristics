@@ -13,7 +13,7 @@ import java.util.Collections;
 
 /**
  *
- * @author Ahmet Batu Orhan
+ * @authors Ahmet Batu Orhan and Ecem İlgün
  * 
  */
 public class graphCreator 
@@ -64,14 +64,15 @@ public class graphCreator
         } 
     }
     
-    protected void printMatrice(String fileName) throws FileNotFoundException
+    protected void printMatrice(ArrayList<ArrayList<Integer>> distancesInput, String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        printMatriceHelper(distances, fileName);
+        printMatriceForPythonHelper(distancesInput, fileName);
+        printMatriceForXPressHelper(distancesInput, fileName);
     }
    
     //Helper Methods
-    protected void fillTempCycle(ArrayList<Integer> inputList)
+    private void fillTempCycle(ArrayList<Integer> inputList)
     {
         for(int i = 0 ; i < nodeNumber ; i++)
         {
@@ -81,12 +82,12 @@ public class graphCreator
         Collections.shuffle(inputList);
     }
     
-    protected void printMatriceHelper(ArrayList<ArrayList<Integer>> distancesInput, String fileName) throws FileNotFoundException
+    private void printMatriceForPythonHelper(ArrayList<ArrayList<Integer>> distancesInput, String fileName) throws FileNotFoundException
     {
         PrintWriter writer = null;
         try
         {
-            writer = new PrintWriter("C:/Users/Ahmet Batu/Desktop/IE400Project/" + fileName + ".txt", "UTF-8");
+            writer = new PrintWriter("For Python/" + fileName + ".txt", "UTF-8");
         } 
         catch (UnsupportedEncodingException ex) 
         {
@@ -113,6 +114,37 @@ public class graphCreator
         writer.close();
     }
     
+    
+    
+    protected void printMatriceForXPressHelper(ArrayList<ArrayList<Integer>> distancesInput, String fileName) throws FileNotFoundException
+    {
+        PrintWriter writer = null;
+        try
+        {
+            writer = new PrintWriter("For XPress/" + fileName + ".txt", "UTF-8");
+        } 
+        catch (UnsupportedEncodingException ex) 
+        {
+            System.err.println("Error in printMatrice(ArrayList<ArrayList<Integer>> distancesInput).\nException description:" + ex);
+        }
+        writer.println(nodeNumber);
+        writer.print("[");
+        for (int i = 0 ; i < distancesInput.size() ; i++) 
+        {
+            for (int j = 0 ; j < distancesInput.get(i).size() ; j++) 
+            {
+                writer.print(distancesInput.get(i).get(j)); 
+                
+                if(i != distancesInput.size() - 1 || j != distancesInput.get(i).size() - 1)
+                writer.print(", ");
+            }
+            if(i != distancesInput.size() - 1)
+            writer.println();
+        }
+        writer.print("]");
+        writer.close();
+    }
+    
     protected void createRandomNodeLocations(ArrayList<ArrayList<Integer>> inputList, int numberOfNodes, int spaceDimension)
     {
         for (int i = 0 ; i < numberOfNodes ; i++) 
@@ -121,7 +153,7 @@ public class graphCreator
             
             for (int j = 0 ; j < spaceDimension ; j++) 
             {
-                tempNodeLocation.add((int)(Math.random() * Integer.MAX_VALUE));
+                tempNodeLocation.add((int)(Math.random() * 1001));
             }
             inputList.add(tempNodeLocation);    
         }

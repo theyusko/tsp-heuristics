@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Ahmet Batu Orhan
+ * @authors Ahmet Batu Orhan and Ecem İlgün
  * 
  */
 public class symmetricGraphCreator extends graphCreator
@@ -58,10 +58,10 @@ public class symmetricGraphCreator extends graphCreator
                 }
                 else
                 {
-                    int tempDistance = (int)(Math.random() * 3);
+                    int tempDistance = (int)(Math.random() * 2);
                     if(tempDistance != 0)
                     {
-                        tempDistance = (int)(Math.random() * Integer.MAX_VALUE);
+                        tempDistance = (int)(Math.random() * 1001);
                         distancesInputArray.get(i).set(j, tempDistance);
                         distancesInputArray.get(j).set(i, tempDistance);
                     }
@@ -74,21 +74,20 @@ public class symmetricGraphCreator extends graphCreator
             int firstNode = cycleInputArray.get(i);
             int secondNode = cycleInputArray.get(i + 1);
             
-            int distance = (int)(Math.random() * Integer.MAX_VALUE);
+            int distance = (int)(Math.random() * 1001);
             distancesInputArray.get(firstNode).set(secondNode, distance);
             distancesInputArray.get(secondNode).set(firstNode, distance);
         }
-        int distance = (int)(Math.random() * Integer.MAX_VALUE);
+        int distance = (int)(Math.random() * 1001);
         
         distancesInputArray.get(cycleInputArray.get(1)).set(cycleInputArray.get(cycleInputArray.size() - 1), distance);
         distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);
                 
     }
     
-    @Override
     protected void printMatrice(String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        printMatriceHelper(distances, fileName);
+        super.printMatrice(distances, fileName);
     }
 }

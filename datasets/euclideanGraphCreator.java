@@ -80,10 +80,9 @@ public class euclideanGraphCreator extends graphCreator
         distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);        
     }
     
-    @Override
     protected void printMatrice(String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        super.printMatriceHelper(distances, fileName);
+        super.printMatrice(distances, fileName);
     }
 }
