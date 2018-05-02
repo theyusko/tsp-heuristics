@@ -6,6 +6,7 @@
 # tour.
 # Step 5. Draw and write down the tour, and calculate the distance of the tour.
 
+from helper import visited_node as check
 import numpy as np
 import math
 
@@ -36,7 +37,7 @@ def algorithm():
 
         node = start_node
         iteration = 1
-        while check_unvisited_node(unvisited) or iteration < node_no:
+        while check.check_unvisited_node(unvisited) and iteration < node_no:
             # Step 2
             closest_arc = float('inf')
             closest_node = node_no
@@ -92,13 +93,6 @@ def algorithm():
     print(shortest_travel_route)
 
     return shortest_min_distance, shortest_travel_route
-
-
-def check_unvisited_node(unvisited):
-    for u in unvisited:
-        if u == 1:
-            return True
-    return False
 
 
 if __name__ == '__main__':
