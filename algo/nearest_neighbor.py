@@ -7,22 +7,24 @@
 # Step 5. Draw and write down the tour, and calculate the distance of the tour.
 
 import numpy as np
+import math
 
 
 def algorithm():
     # Read the first line for node number
     node_no = 10
-    cities = [[-1, 315011971, 1946908451, 63145644, 45460322, 0, 422396217, 2121472905, 395423511, 742752790],
-              [315011971, -1, 1758068920, 1120861991, 910840094, 1628732704, 0, 679900370, 1881826564, 805039021],
-              [1946908451, 1758068920, -1, 0, 1069416540, 0, 1066155702, 286629233, 885178146, 84327624],
-              [63145644, 1120861991, 0, -1, 1505146634, 409381804, 979486790, 1706448539, 1293557175, 0],
-              [45460322, 910840094, 1069416540, 1505146634, -1, 292917507, 1527507816, 407369854, 1799861331, 1910893808],
-              [0, 1628732704, 0, 409381804, 292917507, -1, 1512116143, 0, 688441910, 2062551722],
-              [422396217, 0, 1066155702, 979486790, 1527507816, 1512116143, -1, 894190745, 273931139, 2057830403],
-              [2121472905, 679900370, 286629233, 1706448539, 407369854, 0, 894190745, -1, 0, 27991223],
-              [395423511, 1881826564, 885178146, 1293557175, 1799861331, 688441910, 273931139, 0, -1, 502309305],
-              [742752790, 805039021, 84327624, 0, 1910893808, 2062551722, 2057830403, 27991223, 502309305, -1]]
-    min_distance = np.zeros((node_no,), dtype=int)  # distances with starting node as min_distance[i]
+    graph = [[-1, 3, 6, 9, 5, 5, 3, 3, 5, 4],
+              [3, -1, 8, 9, 8, 5, 0, 8, 3, 1],
+              [6, 8, -1, 9, 0, 0, 9, 2, 9, 4],
+              [9, 9, 9, -1, 0, 0, 2, 4, 9, 0],
+              [5, 8, 0, 0, -1, 2, 0, 1, 7, 8],
+              [5, 5, 0, 0, 2, -1, 0, 5, 0, 9],
+              [3, 0, 9, 2, 0, 0, -1, 0, 3, 2],
+              [3, 8, 2, 4, 1, 5, 0, -1, 7, 7],
+              [5, 3, 9, 9, 7, 0, 3, 7, -1, 0],
+              [4, 1, 4, 0, 8, 9, 2, 7, 0, -1]]
+
+    min_distance = np.zeros((node_no,), dtype=float)  # distances with starting node as min_distance[i]
     travel_route = [[0 for x in range(0, node_no)] for y in range(0, node_no)]
 
     # Step 1
@@ -40,33 +42,42 @@ def algorithm():
             closest_node = node_no
 
             for node2 in range(0, node_no):
-                if unvisited[node2] == 1 and 0 < cities[node][node2] < closest_arc:
-                    closest_arc = cities[node][node2]
+                if unvisited[node2] == 1 and 0 < graph[node][node2] < closest_arc:
+                    closest_arc = graph[node][node2]
                     closest_node = node2
 
             if closest_node >= node_no:
-
-                print("Error: Argument is not complete graph " +
-                      "(No arc exists from a given node to another while there exists unvisited node(s))" +
-                      " while starting node is " + str(start_node) + " and current node is " + str(node))
-                print("travel route is: ")
-                print(travel_route[start_node])
-
-                return
+                # print("Error: Argument is not complete graph " +
+                #      "(No arc exists from a given node to another while there exists unvisited node(s))" +
+                #      " while starting node is " + str(start_node) + " and current node is " + str(node))
+                # print("travel route is: ")
+                # print(travel_route[start_node])
+                min_distance[start_node] = float('inf')
+                break
 
             node = closest_node
             unvisited[node] = 0
-            min_distance[node] = min_distance[node] + closest_arc
-            print(min_distance[node])
+            min_distance[start_node] = min_distance[start_node] + closest_arc
+            # print(min_distance[start_node])
             travel_route[start_node][iteration] = node
             iteration = iteration + 1
 
+        if not math.isinf(min_distance[start_node]):
+            last_visited = travel_route[start_node][node_no-1]
+            if graph[last_visited][start_node] > 0:
+                min_distance[start_node] = min_distance[start_node] + graph[last_visited][start_node]
+            else:
+                min_distance[start_node] = float('inf')
+
         # There shouldn't be any unvisited node left
-        if check_unvisited_node(unvisited):
-            print("Error: Argument is not complete graph (Unvisited node exists)")
-            return
+        # if check_unvisited_node(unvisited):
+        #    print("Error: Argument is not complete graph (Unvisited node exists)")
+        #    return
 
         # There is no unvisited node left
+        print("min distance is: " + str(min_distance[start_node]))
+        print(travel_route[start_node])
+        print()
 
     shortest_travel_route = travel_route[0]
     shortest_min_distance = min_distance.item(0)
