@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Ahmet Batu Orhan
+ * @authors Ahmet Batu Orhan and Ecem İlgün
+ * 
  */
 public class asymmetricGraphCreator extends graphCreator
 {
@@ -57,10 +58,10 @@ public class asymmetricGraphCreator extends graphCreator
                 }
                 else
                 {
-                    int tempDistance = (int)(Math.random() * 3);
+                    int tempDistance = (int)(Math.random() * 2);
                     if(tempDistance != 0)  
                     {
-                        distancesInputArray.get(i).set(j, (int)(Math.random() * Integer.MAX_VALUE));
+                        distancesInputArray.get(i).set(j, (int)(Math.random() * 1001));
                     }
                 }
             }
@@ -71,19 +72,18 @@ public class asymmetricGraphCreator extends graphCreator
             int firstNode = cycleInputArray.get(i);
             int secondNode = cycleInputArray.get(i + 1);
             
-            int distance = (int)(Math.random() * Integer.MAX_VALUE);
+            int distance = (int)(Math.random() * 1001);
             distancesInputArray.get(firstNode).set(secondNode, distance);
         }
-        int distance = (int)(Math.random() * Integer.MAX_VALUE);
+        int distance = (int)(Math.random() * 1001);
         
         distancesInputArray.get(cycleInputArray.get(cycleInputArray.size() - 1)).set(cycleInputArray.get(1), distance);
                 
     }
     
-    @Override
     protected void printMatrice(String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        super.printMatriceHelper(distances, fileName);
+        super.printMatrice(distances, fileName);
     }
 }

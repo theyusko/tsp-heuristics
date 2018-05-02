@@ -6,14 +6,12 @@
 package ie400project;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *
- * @author Ahmet Batu Orhan
+ * @authors Ahmet Batu Orhan and Ecem İlgün
+ * 
  */
 public class nonEucledianGraphCreator extends graphCreator
 {    
@@ -61,7 +59,7 @@ public class nonEucledianGraphCreator extends graphCreator
                 }
                 else
                 {
-                    int tempDistance = (int)(Math.random() * 3);
+                    int tempDistance = (int)(Math.random() * 2);
                     if(tempDistance != 0)
                     {
                         distancesInputArray.get(i).set(j, calculateDistance(i, j, nodeLocationsInputArray));
@@ -93,7 +91,7 @@ public class nonEucledianGraphCreator extends graphCreator
         {
             int nodeOne = (int) (Math.random() * nodeNumber);
             int nodeTwo = 0;
-            for(int i = 0 ; i <= nodeNumber - 1 ; i++)
+            for(int i = 0 ; i < nodeNumber ; i++)
             {
                 if(distancesInputArray.get(nodeOne).get(i) > 0)
                 {
@@ -122,9 +120,8 @@ public class nonEucledianGraphCreator extends graphCreator
             }
             
             
-            int rangeTwo = distancesInputArray.get(nodeOne).get(nodeTwo) + distancesInputArray.get(nodeTwo).get(nodeThree);
-            int biggerThan = (int)(Integer.MAX_VALUE - range) + 1;     
-            int nodeThreeToNodeOne = (int)(Math.random() * biggerThan) + rangeTwo;
+            int rangeTwo = distancesInputArray.get(nodeOne).get(nodeTwo) + distancesInputArray.get(nodeTwo).get(nodeThree);;     
+            int nodeThreeToNodeOne = (int)(Math.random() * 1001) + rangeTwo;
             
             distancesInputArray.get(nodeOne).set(nodeThree, nodeThreeToNodeOne);
             distancesInputArray.get(nodeThree).set(nodeOne, nodeThreeToNodeOne);
@@ -133,10 +130,9 @@ public class nonEucledianGraphCreator extends graphCreator
                 
     }
     
-    @Override
     protected void printMatrice(String fileName) throws FileNotFoundException
     {
         this.fileName = fileName;
-        printMatriceHelper(distances, fileName);
+        super.printMatrice(distances, fileName);
     }
 }
