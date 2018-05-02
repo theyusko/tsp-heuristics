@@ -6,7 +6,7 @@ import math
 
 def algorithm():
     # Read the first line for node number
-    node_no = 10
+	node_no = 10
     graph = [[-1, 3, 6, 9, 5, 5, 3, 3, 5, 4],
               [3, -1, 8, 9, 8, 5, 0, 8, 3, 1],
               [6, 8, -1, 9, 0, 0, 9, 2, 9, 4],
@@ -19,11 +19,35 @@ def algorithm():
               [4, 1, 4, 0, 8, 9, 2, 7, 0, -1]]
 
     min_distance = np.zeros((node_no,), dtype=float)  # distances with starting node as min_distance[i]
-    travel_route = [[0 for x in range(0, node_no)] for y in range(0, node_no)]
+    travel_route = [[-1 for x in range(0, node_no)] for y in range(0, node_no)]
+    parents = [[0 for x in range(0, node_no)] for y in range(0, node_no)]
 
     # Step 1
     for start_node in range(0, node_no):
-        prims_algorithm(start_node, node_no, graph)
+        parents[start_node] = prims_algorithm(start_node, node_no, graph)
+    
+    # Assume triangle inequality holds for nodes, if it doesn't, min spanning tree doesnt give 
+    # a solution closer to optimal
+    
+    # For each mst with a start_node
+    for start_node, parent in enumerate(parents):
+        travel_route[0] = start_node
+        
+        # For each node in a specific mst
+        index = 1
+        while (index < node_no):
+            list = []
+            for node, parent_node in enumerate(parent):
+                if in_travel_route(parent_node, travel_route) and not in_travel_route(node, travel_route):
+                    list.append(node)
+                    index = index + 1
+                
+
+def in_travel_route(node, travel_route):
+    for t in travel_route:
+        if t == node:
+            return True
+    return False
 
 
 def prims_algorithm(start_node, node_no, graph):
@@ -37,12 +61,12 @@ def prims_algorithm(start_node, node_no, graph):
 
     #Step 3.
     iteration = 1
-    while un.check_unvisited_node(unvisited) and iteration < node_no:
+    while un.check_unvisited_node() and iteration < node_no:
         # Find the unvisited node with minimum key
         min_key_val = sys.maxsize
         min_node = node_no
         for index, key_val in enumerate(keys):
-            if key_val < min_key_val:
+            if unvisited[index] == 1 and key_val < min_key_val:
                 min_key_val = key_val
                 min_node = index
 
@@ -56,8 +80,8 @@ def prims_algorithm(start_node, node_no, graph):
 
         iteration = iteration + 1
 
-
     print_mst(parents, node_no, graph)
+    return parent
 
 
 def print_mst(parent, node_no, graph):
@@ -67,4 +91,4 @@ def print_mst(parent, node_no, graph):
 
 
 if __name__ == '__main__':
-    algorithm()
+    algorithm()unvisited
