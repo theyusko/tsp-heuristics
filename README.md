@@ -32,8 +32,8 @@ A team project to implement and compare different TSP heuristics.
  9. Neural Network
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/9_neuralnetwork.png)
  
- 10. Minimum Spanning Tree
-https://www.geeksforgeeks.org/travelling-salesman-problem-set-2-approximate-using-mst/
+ 10. Minimum Spanning Tree (Chosen)
+ https://www.geeksforgeeks.org/travelling-salesman-problem-set-2-approximate-using-mst/
 
  11. Christofides
  ![alt text](https://github.com/theyusko/tsp-heuristics/blob/master/papers_about_algorithms/algo_images/11_christofides.png)
