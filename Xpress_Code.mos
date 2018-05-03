@@ -1,0 +1,56 @@
+model ModelName
+uses "mmxprs"; !gain access to the Xpress-Optimizer solver
+
+
+declarations
+	N = 1..9
+	MaxN = count(N)
+  	X: array(N, N) of mpvar
+  	C: array(N, N) of real
+  	U: array(N) of mpvar
+  	Objective:linctr
+end-declarations
+	
+	C::[-1, 329, 377, 307, 370, 429, 425, 354, 481, 
+		329, -1, 416, 377, 558, 556, 531, 557, 448, 
+		377, 416, -1, 392, 517, 216, 372, 374, 465, 
+		307, 377, 392, -1, 290, 395, 198, 333, 185, 
+		370, 558, 517, 290, -1, 410, 311, 457, 413, 
+		429, 556, 216, 395, 410, -1, 293, 373, 470, 
+		425, 531, 372, 198, 311, 293, -1, 305, 237, 
+		354, 557, 374, 333, 457, 373, 305, -1, 453, 
+		481, 448, 465, 185, 413, 470, 237, 453, -1]
+
+writeln("Begin running model")
+
+	Problem:=sum(i,j in N | i<>j) C(i,j)*X(i,j)
+	
+	forall(j in N)
+	sum(i in N | i<>j and getsol(C(i,j))<>0) X(i,j)= 1
+	
+	forall(j in N)
+	sum(i in N | i<>j and getsol(C(j,i))<>0) X(j,i)= 1
+	
+	forall(i,j in N | j<>1 and i<>j)
+	U(j)>=U(i)+1-MaxN*(1-X(i,j))
+	
+	U(1)=0
+	
+	forall(i in N)
+	U(i)>=0
+	
+	forall(i,j in N | i<>j) X(i,j) is_binary
+	
+	minimize(Problem)
+	
+	writeln("\nObjective Solution: ", getobjval)
+	writeln("")
+	forall(j in N) writeln("Node:", j, " Visition Order:", getsol(U(j)))
+	writeln("")
+	forall(i,j in N | getsol(X(i,j))<>0) writeln("i:", i, " j:", j, " X(i,j):", getsol(X(i,j)))
+	writeln("")
+	
+	
+writeln("End running model")
+
+end-model
